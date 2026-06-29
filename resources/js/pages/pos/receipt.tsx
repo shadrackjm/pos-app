@@ -7,10 +7,11 @@ interface Props {
     sale: Sale;
 }
 
-export default function Receipt({ sale } : Props){
+export default function Receipt({ sale }: Props) {
     return (
         <>
             <Head title={`Receipt #${sale.id}`} />
+
             {/* Screen-only controls */}
             <div className="no-print flex gap-2 border-b p-4">
                 <Link href="/pos">
@@ -35,6 +36,7 @@ export default function Receipt({ sale } : Props){
                     </p>
                     <p className="text-xs text-muted-foreground">Receipt #{sale.id}</p>
                 </div>
+
                 <div className="mb-3 space-y-2 border-t border-dashed pt-3">
                     {sale.items.map(item => (
                         <div key={item.id}>
@@ -48,6 +50,7 @@ export default function Receipt({ sale } : Props){
                         </div>
                     ))}
                 </div>
+
                 <div className="space-y-1 border-t border-dashed pt-3">
                     <div className="flex justify-between text-base font-bold">
                         <span>TOTAL</span>
@@ -62,11 +65,11 @@ export default function Receipt({ sale } : Props){
                         <span>${sale.change_amount}</span>
                     </div>
                 </div>
+
                 <div className="mt-6 text-center text-xs text-muted-foreground">
                     <p>Thank you for your purchase!</p>
                 </div>
             </div>
         </>
     );
-    
 }

@@ -46,6 +46,8 @@ class CheckoutController extends Controller
 
                 $product->decrement('stock', $item['quantity']);
 
+            }
+
                 $cash = (float) $validated['cash_tendered'];
 
                 if ($cash < $total) {
@@ -64,7 +66,6 @@ class CheckoutController extends Controller
                 $sale->items()->createMany($saleItems);
 
                 return $sale->id;
-            }
         });
 
         return redirect()->route('receipt',$saleId);
