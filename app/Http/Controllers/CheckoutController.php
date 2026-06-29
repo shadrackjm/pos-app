@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
 
 class CheckoutController extends Controller
 {
@@ -69,7 +70,11 @@ class CheckoutController extends Controller
         return redirect()->route('receipt',$saleId);
     }
 
-    public function receipt(){
+    public function receipt(Sale $sale){
+        $sale->load('items');
 
+        return Inertia::render('pos/receipt',[
+            'sale' => $sale
+        ]);
     }
 }
